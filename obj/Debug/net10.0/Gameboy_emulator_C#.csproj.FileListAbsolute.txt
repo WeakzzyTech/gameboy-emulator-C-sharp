@@ -1,0 +1,14 @@
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/bin/Debug/net10.0/Gameboy_emulator_C#
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/bin/Debug/net10.0/Gameboy_emulator_C#.deps.json
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/bin/Debug/net10.0/Gameboy_emulator_C#.runtimeconfig.json
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/bin/Debug/net10.0/Gameboy_emulator_C#.dll
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/bin/Debug/net10.0/Gameboy_emulator_C#.pdb
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/Gameboy_emulator_C#.GeneratedMSBuildEditorConfig.editorconfig
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/Gameboy_emulator_C#.AssemblyInfoInputs.cache
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/Gameboy_emulator_C#.AssemblyInfo.cs
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/Gameboy_emulator_C#.csproj.CoreCompileInputs.cache
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/Gameboy_emulator_C#.dll
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/refint/Gameboy_emulator_C#.dll
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/Gameboy_emulator_C#.pdb
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/Gameboy_emulator_C#.genruntimeconfig.cache
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/ref/Gameboy_emulator_C#.dll

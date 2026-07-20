@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "Gameboy_emulator_C#/1.0.0": {
+        "runtime": {
+          "Gameboy_emulator_C#.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Gameboy_emulator_C#/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
