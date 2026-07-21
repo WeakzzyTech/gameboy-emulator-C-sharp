@@ -5,7 +5,7 @@ class Program
 {
     static void Main()
     {
-        string path = "/home/WeakzzyTech/Documents/Gameboy_emulator_C#/rom/pokemon_red.gb";
+        string path = "/home/WeakzzyTech/Documents/Gameboy_emulator_C#/roms/tetris.gb";
         
         byte[] rom = File.ReadAllBytes(path);
 

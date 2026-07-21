@@ -12,3 +12,4 @@
 /home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/Gameboy_emulator_C#.pdb
 /home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/Gameboy_emulator_C#.genruntimeconfig.cache
 /home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/ref/Gameboy_emulator_C#.dll
+/home/WeakzzyTech/Documents/Gameboy_emulator_C#/obj/Debug/net10.0/Gameboy_emulator_C#.sourcelink.json

@@ -14,6 +14,9 @@ class CPU
 
     public byte regA = 0;
     public short Zflag = 0;
+    public short Nflag = 0;
+    public short Hflag = 0;
+    public short Cflag = 0;
 
     private bool ExecuteOpcode(byte opcode, byte[] rom)
     {
@@ -21,6 +24,10 @@ class CPU
         {
             case 0x00:
                 NOP();
+                return true;
+
+            case 0xAF:
+                XORA(rom);
                 return true;
 
             case 0xC3:
@@ -40,6 +47,17 @@ class CPU
     private void NOP()
     {
         Console.WriteLine("NOP");
+    }
+
+    private void XORA(byte[] rom)
+    {
+        Console.WriteLine("XORA");
+        regA ^= regA;
+
+        Zflag = 1;
+        Nflag = 0;
+        Hflag = 0;
+        Cflag = 0;
     }
 
     private void JPa16(byte[] rom)
