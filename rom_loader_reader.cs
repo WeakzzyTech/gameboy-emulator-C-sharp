@@ -9,10 +9,12 @@ class Program
         
         byte[] rom = File.ReadAllBytes(path);
 
+        Memory memory = new Memory(rom);
+
         CPU cpu = new CPU();
 
         Console.WriteLine($"Rom size: {rom.Length} bytes");
-        while (cpu.Step(rom))
+        while (cpu.Step(memory))
         {
         }
     }

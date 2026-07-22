@@ -4,21 +4,21 @@ class CPU
 {
     public ushort pc = 0x100;
 
-    public bool Step(byte[] rom)
+    public bool Step(Memory memory)
     {
-        byte opcode = rom[pc];
+        byte opcode = memory.ReadByte(pc);
         Console.WriteLine($"opcode: {opcode:X2}");
         pc++;
-        return ExecuteOpcode(opcode, rom);
+        return ExecuteOpcode(opcode, memory);
     }
 
     public byte regA = 0;
-    public short Zflag = 0;
-    public short Nflag = 0;
-    public short Hflag = 0;
-    public short Cflag = 0;
+    public bool Zflag;
+    public bool Nflag;
+    public bool Hflag;
+    public bool Cflag;
 
-    private bool ExecuteOpcode(byte opcode, byte[] rom)
+    private bool ExecuteOpcode(byte opcode, Memory memory)
     {
         switch (opcode)
         {
@@ -27,15 +27,15 @@ class CPU
                 return true;
 
             case 0xAF:
-                XORA(rom);
+                XORA();
                 return true;
 
             case 0xC3:
-                JPa16(rom);
+                JPa16(memory);
                 return true;
 
             case 0xFE:
-                CPd8(rom);
+                CPd8(memory);
                 return true;
 
             default:
@@ -49,22 +49,22 @@ class CPU
         Console.WriteLine("NOP");
     }
 
-    private void XORA(byte[] rom)
+    private void XORA()
     {
         Console.WriteLine("XORA");
         regA ^= regA;
 
-        Zflag = 1;
-        Nflag = 0;
-        Hflag = 0;
-        Cflag = 0;
+        Zflag = true;
+        Nflag = false;
+        Hflag = false;
+        Cflag = false;
     }
 
-    private void JPa16(byte[] rom)
+    private void JPa16(Memory memory)
     {
         Console.WriteLine("JPa16");
-        byte low = rom[pc];
-        byte high = rom[pc + 1];
+        byte low = memory.ReadByte(pc);
+        byte high = memory.ReadByte((ushort)(pc + 1));
 
         ushort address = (ushort)(low | (high << 8));
 
@@ -72,19 +72,19 @@ class CPU
 
     }
 
-    private void CPd8(byte[] rom)
+    private void CPd8(Memory memory)
     {
         Console.WriteLine("CPd8");
-        byte d8 = rom[pc];
+        byte d8 = memory.ReadByte(pc);
         pc++;
 
         int result = regA - d8;
         if (result == 0)
         {
-            Zflag = 1;
+            Zflag = true;
         }else
         {
-            Zflag = 0;
+            Zflag = false;
         }
     }
 }
