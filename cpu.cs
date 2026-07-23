@@ -13,6 +13,8 @@ class CPU
     }
 
     public byte regA = 0;
+    public byte regH = 0;
+    public byte regL = 0;
     public bool Zflag;
     public bool Nflag;
     public bool Hflag;
@@ -24,6 +26,10 @@ class CPU
         {
             case 0x00:
                 NOP();
+                return true;
+
+            case 0x21:
+                LDHLd16(memory);
                 return true;
 
             case 0xAF:
@@ -47,6 +53,13 @@ class CPU
     private void NOP()
     {
         Console.WriteLine("NOP");
+    }
+
+    private void LDHLd16(Memory memory)
+    {
+        Console.WriteLine("LDHLd16");
+        regH = memory.ReadByte(pc);
+        regL  = memory.ReadByte((ushort)(pc + 1));
     }
 
     private void XORA()
