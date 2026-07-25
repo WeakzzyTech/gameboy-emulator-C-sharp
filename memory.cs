@@ -8,7 +8,7 @@ class Memory
     private byte[] eram = new byte[0x2000];
     private byte[] oam = new byte[0xA0];
     private byte[] io = new byte[0x80];
-    private byte[] hhram = new byte{0x7F};
+    private byte[] hram = new byte[0x7F];
 
     private byte interruptEnable;
 
