@@ -30,7 +30,7 @@ class CPU
 
             case 0x21:
                 LDHLd16(memory);
-                return 4;
+                return 12;
 
             case 0xAF:
                 XORA();
