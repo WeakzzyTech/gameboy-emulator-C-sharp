@@ -4,7 +4,7 @@ class CPU
 {
     public ushort pc = 0x100;
 
-    public bool Step(Memory memory)
+    public int Step(Memory memory)
     {
         byte opcode = memory.ReadByte(pc);
         Console.WriteLine($"opcode: {opcode:X2}");
@@ -20,33 +20,33 @@ class CPU
     public bool Hflag;
     public bool Cflag;
 
-    private bool ExecuteOpcode(byte opcode, Memory memory)
+    private int ExecuteOpcode(byte opcode, Memory memory)
     {
         switch (opcode)
         {
             case 0x00:
                 NOP();
-                return true;
+                return 4;
 
             case 0x21:
                 LDHLd16(memory);
-                return true;
+                return 4;
 
             case 0xAF:
                 XORA();
-                return true;
+                return 4;
 
             case 0xC3:
                 JPa16(memory);
-                return true;
+                return 16;
 
             case 0xFE:
                 CPd8(memory);
-                return true;
+                return 8;
 
             default:
                 Console.WriteLine($"Unknown opcode");
-                return false;
+                return -1;
         }
     }
 
@@ -58,8 +58,9 @@ class CPU
     private void LDHLd16(Memory memory)
     {
         Console.WriteLine("LDHLd16");
-        regH = memory.ReadByte(pc);
-        regL  = memory.ReadByte((ushort)(pc + 1));
+        regL = memory.ReadByte(pc);
+        regH  = memory.ReadByte((ushort)(pc + 1));
+        pc += 2;
     }
 
     private void XORA()

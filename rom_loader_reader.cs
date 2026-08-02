@@ -10,12 +10,18 @@ class Program
         byte[] rom = File.ReadAllBytes(path);
 
         Memory memory = new Memory(rom);
-
         CPU cpu = new CPU();
+        PPU ppu = new PPU();
 
         Console.WriteLine($"Rom size: {rom.Length} bytes");
-        while (cpu.Step(memory))
+        while (true)
         {
+            int cycles = cpu.Step(memory);
+
+            if (cycles == -1)
+                break;
+
+            ppu.Step(cycles);
         }
     }
 }
