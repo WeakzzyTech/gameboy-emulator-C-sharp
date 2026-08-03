@@ -76,10 +76,13 @@ class CPU
     private void DecB(Memory memory)
     {
         Console.WriteLine("DecB");
+        
+        Hflag = (regB & 0x0F) == 0;
+
         regB--;
-        Zflag = false;
-        Nflag = false;
-        Hflag = false;
+        
+        Zflag = regB == 0;
+        Nflag = true;
     }
 
     private void LDHLd16(Memory memory)
