@@ -34,13 +34,29 @@ class CPU
                 DecB(memory);
                 return 4;
 
+            case 0x18:
+                JRs8(memory);
+                return 12;
+
+            case 0x20:
+                return JRNZs8(memory);
+                //return's inside it
+
             case 0x21:
                 LDHLd16(memory);
                 return 12;
 
+            case 0x28:
+                return JRZs8(memory);
+                //return's inside it
+
             case 0x32:
                 LDHLDecA(memory);
                 return 8;
+
+            case 0x0D:
+                DECC(memory);
+                return 4;
 
             case 0xAF:
                 XORA();
@@ -93,6 +109,29 @@ class CPU
         pc += 2;
     }
 
+    private void JRs8(Memory memory)
+    {
+        Console.WriteLine("JRs8");
+        sbyte offset = (sbyte)memory.ReadByte(pc);
+        pc++;
+        pc  = (ushort)(pc +  offset);
+    }
+
+    private int JRZs8(Memory memory)
+    {
+        Console.WriteLine("JRZs8");
+        sbyte offset = (sbyte)memory.ReadByte(pc);
+        pc++;
+
+        if (Zflag)
+        {
+            pc = (ushort)(pc + offset);
+            return 12;
+        }
+
+        return 8;
+    }
+
     private void LDHLDecA(Memory memory)
     {
         Console.WriteLine("LDHLDecA");
@@ -103,6 +142,21 @@ class CPU
 
         regH = (byte)(HL >> 8);
         regL = (byte)(HL & 0xFF);
+    }
+
+    private int JRNZs8(Memory memory)
+    {
+        Console.WriteLine("JRNZs8");
+        sbyte offset = (sbyte)memory.ReadByte(pc);
+        pc++;
+
+        if (Zflag == false)
+        {
+            pc = (ushort)(pc + offset);
+            return 12;
+        }
+
+        return 8;
     }
 
     private void XORA()
@@ -126,6 +180,12 @@ class CPU
 
         pc = address;
 
+    }
+
+    private void DECC(Memory memory)
+    {
+        Console.WriteLine("DECC");
+        regC -= 1;
     }
 
     private void CPd8(Memory memory)

@@ -5,7 +5,7 @@ class Program
 {
     static void Main()
     {
-        string path = "/home/WeakzzyTech/Documents/Gameboy_emulator_C#/roms/tetris.gb";
+        string path = "roms/tetris.gb";
         
         byte[] rom = File.ReadAllBytes(path);
 
@@ -14,7 +14,10 @@ class Program
         PPU ppu = new PPU();
 
         Console.WriteLine($"Rom size: {rom.Length} bytes");
-        while (true)
+
+        bool running = true;
+
+        while (running)
         {
             int cycles = cpu.Step(memory);
 
