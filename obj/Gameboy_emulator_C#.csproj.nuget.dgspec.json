@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Code\\gameboy-emulator-C-sharp-main-github-ver\\gameboy-emulator-new\\Gameboy_emulator_C#.csproj": {}
+    "C:\\Users\\Enzo\\Documents\\Projects\\Gameboy-emulator-C#\\gameboy-emulator-C-sharp\\Gameboy_emulator_C#.csproj": {}
   },
   "projects": {
-    "E:\\Code\\gameboy-emulator-C-sharp-main-github-ver\\gameboy-emulator-new\\Gameboy_emulator_C#.csproj": {
+    "C:\\Users\\Enzo\\Documents\\Projects\\Gameboy-emulator-C#\\gameboy-emulator-C-sharp\\Gameboy_emulator_C#.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Code\\gameboy-emulator-C-sharp-main-github-ver\\gameboy-emulator-new\\Gameboy_emulator_C#.csproj",
+        "projectUniqueName": "C:\\Users\\Enzo\\Documents\\Projects\\Gameboy-emulator-C#\\gameboy-emulator-C-sharp\\Gameboy_emulator_C#.csproj",
         "projectName": "Gameboy_emulator_C#",
-        "projectPath": "E:\\Code\\gameboy-emulator-C-sharp-main-github-ver\\gameboy-emulator-new\\Gameboy_emulator_C#.csproj",
+        "projectPath": "C:\\Users\\Enzo\\Documents\\Projects\\Gameboy-emulator-C#\\gameboy-emulator-C-sharp\\Gameboy_emulator_C#.csproj",
         "packagesPath": "C:\\Users\\Enzo\\.nuget\\packages\\",
-        "outputPath": "E:\\Code\\gameboy-emulator-C-sharp-main-github-ver\\gameboy-emulator-new\\obj\\",
+        "outputPath": "C:\\Users\\Enzo\\Documents\\Projects\\Gameboy-emulator-C#\\gameboy-emulator-C-sharp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Enzo\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -34,6 +34,10 @@ class CPU
                 DecB(memory);
                 return 4;
 
+            case 0x0D:
+                DECC(memory);
+                return 4;
+
             case 0x18:
                 JRs8(memory);
                 return 12;
@@ -54,9 +58,9 @@ class CPU
                 LDHLDecA(memory);
                 return 8;
 
-            case 0x0D:
-                DECC(memory);
-                return 4;
+            case 0x3E:
+                LDAd8(memory);
+                return 8;
 
             case 0xAF:
                 XORA();
@@ -130,6 +134,15 @@ class CPU
         }
 
         return 8;
+    }
+
+    private void LDAd8(Memory memory)
+    {
+        Console.WriteLine("LDAd8");
+        byte d8 = memory.ReadByte(pc);
+        pc++;
+
+        regA = d8;
     }
 
     private void LDHLDecA(Memory memory)
