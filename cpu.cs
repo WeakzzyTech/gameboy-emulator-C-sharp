@@ -21,6 +21,7 @@ class CPU
     public bool Nflag;
     public bool Hflag;
     public bool Cflag;
+    public bool InterruptMasterEnable = true;
 
     private int ExecuteOpcode(byte opcode, Memory memory)
     {
@@ -69,6 +70,18 @@ class CPU
             case 0xC3:
                 JPa16(memory);
                 return 16;
+
+            case 0xE0:
+                LDa8A(memory);
+                return 12;
+
+            case 0xF0:
+                LDAa8(memory);
+                return 12;
+
+            case 0xF3:
+                DI();
+                return 4;
 
             case 0xFE:
                 CPd8(memory);
@@ -136,6 +149,12 @@ class CPU
         return 8;
     }
 
+    private void DI()
+    {
+        Console.WriteLine("DI");
+        InterruptMasterEnable = false;
+    }
+
     private void LDAd8(Memory memory)
     {
         Console.WriteLine("LDAd8");
@@ -155,6 +174,26 @@ class CPU
 
         regH = (byte)(HL >> 8);
         regL = (byte)(HL & 0xFF);
+    }
+
+    private void LDa8A(Memory memory)
+    {
+        Console.WriteLine("LDa8A");
+        byte a8 = memory.ReadByte(pc);
+        pc++;
+
+        ushort address = (ushort)(0xFF00 + a8);
+        memory.WriteByte(address, regA);
+    }
+
+    private void LDAa8(Memory memory)
+    {
+        Console.WriteLine("LDAa8");
+        byte a8 = memory.ReadByte(pc);
+        pc++;
+
+        ushort address = (ushort)(0xFF00 + a8);
+        regA = memory.ReadByte(address);
     }
 
     private int JRNZs8(Memory memory)
@@ -198,7 +237,10 @@ class CPU
     private void DECC(Memory memory)
     {
         Console.WriteLine("DECC");
-        regC -= 1;
+        Hflag = (regC & 0x0F) == 0;
+        regC--;
+        Zflag = regC == 0;
+        Nflag = true;
     }
 
     private void CPd8(Memory memory)
@@ -207,14 +249,10 @@ class CPU
         byte d8 = memory.ReadByte(pc);
         pc++;
 
-        int result = regA - d8;
-        if (result == 0)
-        {
-            Zflag = true;
-        }else
-        {
-            Zflag = false;
-        }
+        Zflag = regA == d8;
+        Nflag = true;
+        Hflag = (regA & 0x0F) < (d8 & 0x0F);
+        Cflag = regA < d8;
     }
 
     private void LDBd8(Memory memory)
