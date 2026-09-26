@@ -22,6 +22,7 @@ class CPU
     public bool Hflag;
     public bool Cflag;
     public bool InterruptMasterEnable = true;
+    public ushort SP = 0xFFFE;
 
     private int ExecuteOpcode(byte opcode, Memory memory)
     {
@@ -32,12 +33,20 @@ class CPU
                 return 4;
 
             case 0x05:
-                DecB(memory);
+                DecB();
                 return 4;
 
+            case 0x06:
+                LDBd8(memory);
+                return 8;
+
             case 0x0D:
-                DECC(memory);
+                DECC();
                 return 4;
+
+            case 0x0E:
+                LDCd8(memory);
+                return 8;
 
             case 0x18:
                 JRs8(memory);
@@ -45,7 +54,6 @@ class CPU
 
             case 0x20:
                 return JRNZs8(memory);
-                //return's inside it
 
             case 0x21:
                 LDHLd16(memory);
@@ -53,7 +61,6 @@ class CPU
 
             case 0x28:
                 return JRZs8(memory);
-                //return's inside it
 
             case 0x32:
                 LDHLDecA(memory);
@@ -63,6 +70,10 @@ class CPU
                 LDAd8(memory);
                 return 8;
 
+            case 0x47:
+                LDBA();
+                return 4;
+
             case 0xAF:
                 XORA();
                 return 4;
@@ -71,9 +82,17 @@ class CPU
                 JPa16(memory);
                 return 16;
 
+            case 0xCD:
+                CALLa16(memory);
+                return 24;
+
             case 0xE0:
                 LDa8A(memory);
                 return 12;
+
+            case 0xEA:
+                LDa16A(memory);
+                return 16;
 
             case 0xF0:
                 LDAa8(memory);
@@ -87,14 +106,6 @@ class CPU
                 CPd8(memory);
                 return 8;
 
-            case 0x06:
-                LDBd8(memory);
-                return 8;
-
-            case 0x0E:
-                LDCd8(memory);
-                return 8;
-
             default:
                 Console.WriteLine($"Unknown opcode");
                 return -1;
@@ -106,7 +117,7 @@ class CPU
         Console.WriteLine("NOP");
     }
 
-    private void DecB(Memory memory)
+    private void DecB()
     {
         Console.WriteLine("DecB");
         
@@ -149,6 +160,23 @@ class CPU
         return 8;
     }
 
+    private void CALLa16(Memory memory)
+    {
+        Console.WriteLine("CALLa16");
+        byte low = memory.ReadByte(pc);
+        byte high = memory.ReadByte((ushort)(pc + 1));
+        ushort destAddress = (ushort)(low | (high << 8));
+        pc = (ushort)(pc + 2);
+
+        SP--;
+        memory.WriteByte(SP, (byte)(pc >> 8));
+
+        SP--;
+        memory.WriteByte(SP, (byte)(pc & 0xFF));
+
+        pc = destAddress;
+    }
+
     private void DI()
     {
         Console.WriteLine("DI");
@@ -164,13 +192,29 @@ class CPU
         regA = d8;
     }
 
+    private void LDBA()
+    {
+        Console.WriteLine("LDBA");
+        regB = regA;
+    }
+
+    private void LDa16A(Memory memory)
+    {
+        Console.WriteLine("LDa16A");
+        byte low = memory.ReadByte(pc);
+        byte high = memory.ReadByte((ushort)(pc + 1));
+        ushort address = (ushort)(low | (high << 8));
+        memory.WriteByte(address, regA);
+        pc = (ushort)(pc + 2);
+    }
+
     private void LDHLDecA(Memory memory)
     {
         Console.WriteLine("LDHLDecA");
         ushort HL = (ushort)((regH << 8) | regL);
 
         memory.WriteByte(HL, regA);
-        HL--;
+        HL = (ushort)(HL - 1);
 
         regH = (byte)(HL >> 8);
         regL = (byte)(HL & 0xFF);
@@ -228,13 +272,10 @@ class CPU
         byte low = memory.ReadByte(pc);
         byte high = memory.ReadByte((ushort)(pc + 1));
 
-        ushort address = (ushort)(low | (high << 8));
-
-        pc = address;
-
+        pc = (ushort)(low | (high << 8));
     }
 
-    private void DECC(Memory memory)
+    private void DECC()
     {
         Console.WriteLine("DECC");
         Hflag = (regC & 0x0F) == 0;

@@ -5,7 +5,7 @@ class Program
 {
     static void Main()
     {
-        string path = "roms/tetris.gb";
+        string path = "roms/pokemonred.gb";
         
         byte[] rom = File.ReadAllBytes(path);
 

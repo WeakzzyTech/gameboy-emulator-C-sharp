@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Gameboy_emulator_C#")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5a57112cba9552b066b3d9fc07f21184fdbad4a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90b06b4dcf5a15f9e56502b6f70d66376e8f6f31")]
 [assembly: System.Reflection.AssemblyProductAttribute("Gameboy_emulator_C#")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Gameboy_emulator_C#")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
