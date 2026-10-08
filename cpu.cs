@@ -7,9 +7,10 @@ class CPU
     public int Step(Memory memory)
     {
         byte opcode = memory.ReadByte(pc);
-        Console.WriteLine($"opcode: {opcode:X2}");
+        byte byte1 = memory.ReadByte((ushort)(pc + 1));
+        Console.WriteLine($"opcode: {opcode:X2} | {byte1:X2}");
         pc++;
-        return ExecuteOpcode(opcode, memory);
+        return ExecuteOpcode(opcode, byte1, memory);
     }
 
     public byte regA = 0;
@@ -17,6 +18,8 @@ class CPU
     public byte regC = 0;
     public byte regH = 0;
     public byte regL = 0;
+    public byte regP = 0;
+    public byte regS = 0;
     public bool Zflag;
     public bool Nflag;
     public bool Hflag;
@@ -24,13 +27,17 @@ class CPU
     public bool InterruptMasterEnable = true;
     public ushort SP = 0xFFFE;
 
-    private int ExecuteOpcode(byte opcode, Memory memory)
+    private int ExecuteOpcode(byte opcode, byte byte1, Memory memory)
     {
         switch (opcode)
         {
             case 0x00:
                 NOP();
                 return 4;
+
+            case 0x01:
+                LDBCd16(memory);
+                return 12;
 
             case 0x05:
                 DecB();
@@ -62,6 +69,10 @@ class CPU
             case 0x28:
                 return JRZs8(memory);
 
+            case 0x31:
+                LDSPd16(memory);
+                return 12;
+
             case 0x32:
                 LDHLDecA(memory);
                 return 8;
@@ -81,6 +92,10 @@ class CPU
             case 0xC3:
                 JPa16(memory);
                 return 16;
+
+            case 0xCB:
+                pc++;
+                return ExecuteOpcodesCB(byte1, memory);
 
             case 0xCD:
                 CALLa16(memory);
@@ -112,6 +127,20 @@ class CPU
         }
     }
 
+    private int ExecuteOpcodesCB(byte byte1, Memory memory)
+    {
+        switch(byte1)
+        {
+            case 0x87:
+                regA = (byte)(regA & 0xFE);
+                return 8;
+
+            default:
+                Console.WriteLine($"Unknown CB opcode");
+                return -1;
+        }
+    }
+
     private void NOP()
     {
         Console.WriteLine("NOP");
@@ -127,6 +156,22 @@ class CPU
         
         Zflag = regB == 0;
         Nflag = true;
+    }
+
+    private void LDSPd16(Memory memory)
+    {
+        Console.WriteLine("LDSPd16");
+        regS = memory.ReadByte(pc);
+        regP = memory.ReadByte((ushort)(pc + 1));
+        pc += 2;
+    }
+
+    private void LDBCd16(Memory memory)
+    {
+        Console.WriteLine("LDBCd16");
+        regB = memory.ReadByte(pc);
+        regC = memory.ReadByte((ushort)(pc + 1));
+        pc += 2;
     }
 
     private void LDHLd16(Memory memory)
