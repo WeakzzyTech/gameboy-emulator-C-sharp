@@ -7,8 +7,39 @@
   "targets": {
     ".NETCoreApp,Version=v10.0": {
       "Gameboy_emulator_C#/1.0.0": {
+        "dependencies": {
+          "SDL3-CS": "3.4.18",
+          "SDL3-CS.Windows": "3.4.18"
+        },
         "runtime": {
           "Gameboy_emulator_C#.dll": {}
+        }
+      },
+      "SDL3-CS/3.4.18": {
+        "runtime": {
+          "lib/net10.0/SDL3-CS.dll": {
+            "assemblyVersion": "3.4.18.0",
+            "fileVersion": "3.4.18.0"
+          }
+        }
+      },
+      "SDL3-CS.Windows/3.4.18": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/SDL3.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "3.4.18.0"
+          },
+          "runtimes/win-x64/native/SDL3.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "3.4.18.0"
+          },
+          "runtimes/win-x86/native/SDL3.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "3.4.18.0"
+          }
         }
       }
     }
@@ -18,6 +49,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "SDL3-CS/3.4.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3G94NVLuQHvzL3BQ8qmPnR9S77hg5cfxH5SIxWxq+8gvpFL5Uj8f1BnugFc4jd0lamXAnNhukJ2zcNPQf1dM3w==",
+      "path": "sdl3-cs/3.4.18",
+      "hashPath": "sdl3-cs.3.4.18.nupkg.sha512"
+    },
+    "SDL3-CS.Windows/3.4.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JNzFcjtKZ4DmGH1ImHswahrUhUD9+IM61agunfZ7qkOpxBQ+37i6ebyq74sUYhQB7lpLA6QRr4PW/lMXx0/qCA==",
+      "path": "sdl3-cs.windows/3.4.18",
+      "hashPath": "sdl3-cs.windows.3.4.18.nupkg.sha512"
     }
   }
 }

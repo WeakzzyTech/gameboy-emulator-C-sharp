@@ -87,3 +87,9 @@ D:\Projects\gameboy-emulator-C-sharp-main-github-ver\gameboy-emulator-C-sharp\ob
 D:\Projects\gameboy-emulator-C-sharp-main-github-ver\gameboy-emulator-C-sharp\obj\Debug\net10.0\Gameboy_emulator_C#.pdb
 D:\Projects\gameboy-emulator-C-sharp-main-github-ver\gameboy-emulator-C-sharp\obj\Debug\net10.0\Gameboy_emulator_C#.genruntimeconfig.cache
 D:\Projects\gameboy-emulator-C-sharp-main-github-ver\gameboy-emulator-C-sharp\obj\Debug\net10.0\ref\Gameboy_emulator_C#.dll
+D:\Projects\gameboy-emulator-C-sharp-main-github-ver\gameboy-emulator-C-sharp\obj\Debug\net10.0\Gameboy_emulator_C#.csproj.AssemblyReference.cache
+D:\Projects\gameboy-emulator-C-sharp-main-github-ver\gameboy-emulator-C-sharp\bin\Debug\net10.0\SDL3-CS.dll
+D:\Projects\gameboy-emulator-C-sharp-main-github-ver\gameboy-emulator-C-sharp\obj\Debug\net10.0\Gameboy_.8D6B2F21.Up2Date
+D:\Projects\gameboy-emulator-C-sharp-main-github-ver\gameboy-emulator-C-sharp\bin\Debug\net10.0\runtimes\win-arm64\native\SDL3.dll
+D:\Projects\gameboy-emulator-C-sharp-main-github-ver\gameboy-emulator-C-sharp\bin\Debug\net10.0\runtimes\win-x64\native\SDL3.dll
+D:\Projects\gameboy-emulator-C-sharp-main-github-ver\gameboy-emulator-C-sharp\bin\Debug\net10.0\runtimes\win-x86\native\SDL3.dll

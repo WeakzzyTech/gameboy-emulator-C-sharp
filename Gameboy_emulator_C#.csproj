@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="sdl2.nuget" Version="2.32.8" />
+    <PackageReference Include="SDL3-CS" Version="3.4.18" />
+    <PackageReference Include="SDL3-CS.Windows" Version="3.4.18" />
   </ItemGroup>
 
 </Project>
