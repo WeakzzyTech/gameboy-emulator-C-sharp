@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using SDL3; // Access SDL structures
+using SDL3;
 
 class Program
 {
@@ -21,8 +21,6 @@ class Program
         CPU cpu = new CPU();
         PPU ppu = new PPU();
 
-        Console.WriteLine($"Rom size: {rom.Length} bytes");
-
         bool running = true;
 
         while (running)
@@ -39,14 +37,17 @@ class Program
             if (!running) break;
 
             int cycles = cpu.Step(memory);
-
-            if (cycles == -1)
-                break;
+            if (cycles == -1) break;
 
             ppu.Step(cycles);
+
+            if (ppu.VBlankRequested)
+            {
+                graphics.RenderFrame(ppu.Framebuffer);
+                ppu.ClearVBlank();
+            }
         }
 
         graphics.Shutdown();
-        Console.WriteLine("Emulator closed cleanly.");
     }
 }

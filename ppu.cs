@@ -5,6 +5,11 @@ public class PPU
     private int cycleCounter = 0;
     private int scanline = 0;
 
+    public uint[] Framebuffer { get; private set; } = new uint[160 * 144];
+    public bool VBlankRequested { get; private set; } = false;
+
+    public void ClearVBlank() => VBlankRequested = false;
+
     public void Step(int cycles)
     {
         cycleCounter += cycles;
@@ -14,17 +19,14 @@ public class PPU
             cycleCounter -= 456;
             scanline++;
 
-            Console.WriteLine($"Scanline: {scanline}");
-
             if (scanline == 144)
             {
-                Console.WriteLine("Entering VBlank");
+                VBlankRequested = true;
             }
 
             if (scanline >= 154)
             {
                 scanline = 0;
-                Console.WriteLine("New Frame");
             }
         }
     }
